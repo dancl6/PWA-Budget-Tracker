@@ -1,13 +1,13 @@
 // create variable to hold db connection
 let db;
-// establish a connection to IndexedDB database called 'pizza_hunt' and set it to version 1
+// establish a connection to IndexedDB database called 'budget-tracker' and set it to version 1
 const request = indexedDB.open('budget-tracker', 1)
 
 // this event will emit if the database version changes (nonexistant to version 1, v1 to v2, etc.)
 request.onupgradeneeded = function(event) {
     // save a reference to the database 
     const db = event.target.result;
-    // create an object store (table) called `new_pizza`, set it to have an auto incrementing primary key of sorts 
+    // create an object store (table) called `new_entry`, set it to have an auto incrementing primary key of sorts 
     db.createObjectStore('new_entry', { autoIncrement: true });
   };
 
@@ -16,7 +16,7 @@ request.onsuccess = function(event) {
     // when db is successfully created with its object store (from onupgradedneeded event above) or simply established a connection, save reference to db in global variable
     db = event.target.result;
   
-    // check if app is online, if yes run uploadPizza() function to send all local db data to api
+    // check if app is online, if yes run uploadAddition() function to send all local db data to api
     if (navigator.onLine) {
       // we haven't created this yet, but we will soon, so let's comment it out for now
       uploadAddition();
@@ -28,12 +28,12 @@ request.onsuccess = function(event) {
     console.log(event.target.errorCode);
   };
 
-  // This function will be executed if we attempt to submit a new pizza and there's no internet connection
+  // This function will be executed if we attempt to submit a new addition and there's no internet connection
 function saveRecord(record) {
     // open a new transaction with the database with read and write permissions 
     const addition = db.transaction(['new_entry'], 'readwrite');
   
-    // access the object store for `new_pizza`
+    // access the object store for `new_entry`
     const additionObjectStore = addition.objectStore('new_entry');
   
     // add record to your store with add method
@@ -68,12 +68,12 @@ getAll.onsuccess = function() {
           }
           // open one more transaction
           const addition = db.transaction(['new_entry'], 'readwrite');
-          // access the new_pizza object store
+          // access the new_entry object store
           const additionObjectStore = addition.objectStore('new_entry');
           // clear all items in your store
           additionObjectStore.clear();
 
-          alert('All saved pizza has been submitted!');
+          alert('All saved entries have been submitted!');
         })
         .catch(err => {
           console.log(err);
