@@ -25,6 +25,7 @@
     "compression": "^1.7.4",
     "express": "^4.17.1",
     "image-webpack-loader": "^6.0.0",
+    "mlab": "^1.0.30-beta",
     "mongoose": "^5.5.15",
     "morgan": "^1.9.1"
   },
@@ -32,6 +33,7 @@
     "file-loader": "^6.0.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-pwa-manifest": "^4.2.0"
   }
 }
