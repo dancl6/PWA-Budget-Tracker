@@ -26,8 +26,7 @@
     "image-webpack-loader": "^6.0.0",
     "mlab": "^1.0.30-beta",
     "mongoose": "^5.5.15",
-    "morgan": "^1.9.1",
-    "url-regex": "^5.0.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "file-loader": "^6.0.0",
